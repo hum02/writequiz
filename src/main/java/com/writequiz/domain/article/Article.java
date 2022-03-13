@@ -1,5 +1,6 @@
-package com.writequiz.domain;
+package com.writequiz.domain.article;
 
+import com.writequiz.domain.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,7 +32,7 @@ public class  Article extends BaseTimeEntity {
     @Column(nullable = true)
     private String image;           // 게시글 사진링크
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String author;          // 게시글 작성자
 
 
@@ -43,9 +44,24 @@ public class  Article extends BaseTimeEntity {
         this.contentsMd = contentsMd;
         this.image = image;
         this.author = author;
-
     }
 
+    public Article (ArticleRequestDto articleRequestDto){
+        this.title = articleRequestDto.getTitle();
+        this.contents = articleRequestDto.getContents();
+        this.contentsHtml = articleRequestDto.getContentsHtml();
+        this.contentsMd = articleRequestDto.getContentsMd();
+        this.image = articleRequestDto.getImage();
+        this.author = articleRequestDto.getAuthor();
+    }
 
+    public void update (ArticleRequestDto articleRequestDto){
+        this.title = articleRequestDto.getTitle();
+        this.contents = articleRequestDto.getContents();
+        this.contentsHtml = articleRequestDto.getContentsHtml();
+        this.contentsMd = articleRequestDto.getContentsMd();
+        this.image = articleRequestDto.getImage();
+        this.author = articleRequestDto.getAuthor();
+    }
 
 }
